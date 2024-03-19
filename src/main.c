@@ -1,13 +1,16 @@
 #include <stdio.h>
 #include "objects/circle.h"
+#include "objects/canvas.h"
 
 int main(int argc, char const *argv[])
 {
-    Color color = init_color(10, 15, 20);
+    Canvas canvas = init_canvas("ali.ppm", 800, 400, (Color){255, 255, 255});
+    Color color = init_color(255, 0, 0);
+    Circle circle = init_circle(30, 200, 200, color);
 
-    Circle circle = init_circle(35.76, color);
+    draw_circle(&canvas, circle);
 
-    print_circle(&circle);
+    export_canvas(&canvas);
 
     return 0;
 }

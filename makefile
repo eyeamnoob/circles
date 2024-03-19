@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -lm
 
 all: src/main.c
 	$(CC) $(CFLAGS) src/main.c -o bin/main

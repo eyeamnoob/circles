@@ -1,5 +1,4 @@
 #ifndef __MY_COLOR_H
-
 #define __MY_COLOR_H
 
 #include <stdint.h>
