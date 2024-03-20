@@ -7,3 +7,4 @@ all: src/main.c
 
 clean:
 	rm -rf bin/*
+	rm ./*.ppm
