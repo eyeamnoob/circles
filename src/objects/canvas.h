@@ -144,7 +144,8 @@ void circles_intersect(Canvas *canvas, Circle circle1, Circle circle2)
 
             if (distance1 <= circle1.radius && distance2 <= circle2.radius && is_inside(canvas, i, j))
             {
-                canvas->surface[i][j] = (Color){0, 0, 0};
+                Color mixed_color = mix_color(circle1.color, circle2.color);
+                canvas->surface[i][j] = mixed_color;
             }
         }
     }
