@@ -1,14 +1,16 @@
 #ifndef __MY_CANVAS_H
 #define __MY_CANVAS_H
 
+#include "../utils/my_math.h"
+#include "circle.h"
+#include "color.h"
+#include "intersect.h"
+
+#include <math.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <math.h>
-#include "color.h"
-#include "circle.h"
-#include "../utils/my_math.h"
 
 typedef struct __Canvas
 {
@@ -113,8 +115,11 @@ Canvas init_canvas(char *name, uint32_t x, uint32_t y, Color bg_color)
     return canvas;
 }
 
-void circles_intersect(Canvas *canvas, Circle circle1, Circle circle2)
+void draw_intersect(Canvas *canvas, Intersect intersect)
 {
+    Circle circle1 = intersect.circle1;
+    Circle circle2 = intersect.circle2;
+
     int32_t circle1_top_left_x = circle1.x - circle1.radius;
     int32_t circle1_top_left_y = circle1.y - circle1.radius;
     int32_t circle1_bottom_right_x = circle1.x + circle1.radius;
@@ -144,8 +149,7 @@ void circles_intersect(Canvas *canvas, Circle circle1, Circle circle2)
 
             if (distance1 <= circle1.radius && distance2 <= circle2.radius && is_inside(canvas, i, j))
             {
-                Color mixed_color = mix_color(circle1.color, circle2.color);
-                canvas->surface[i][j] = mixed_color;
+                canvas->surface[i][j] = intersect.color;
             }
         }
     }
