@@ -33,7 +33,7 @@ static bool is_inside(Canvas *canvas, int32_t x, int32_t y)
     return false;
 }
 
-void draw_circle(Canvas *canvas, Circle circle)
+void draw_circle(Canvas *canvas, Circle circle, bool fill)
 {
     uint32_t x = circle.x;
     uint32_t y = circle.y;
@@ -52,8 +52,11 @@ void draw_circle(Canvas *canvas, Circle circle)
             uint32_t dy = abs((int32_t)y - j);
 
             float distance = sqrt(dx * dx + dy * dy);
-
-            if (distance <= radius && is_inside(canvas, i, j))
+            if (fill && distance <= radius && is_inside(canvas, i, j))
+            {
+                canvas->surface[i][j] = circle.color;
+            }
+            else if (!fill && fabs(distance - radius) <= 1 && is_inside(canvas, i, j))
             {
                 canvas->surface[i][j] = circle.color;
             }
