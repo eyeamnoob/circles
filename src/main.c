@@ -6,6 +6,7 @@
 
 #define CANVAS_HEIGHT 800
 #define CANVAS_WIDTH 800
+#define SECTIONS 3
 
 int main(int argc, char const *argv[])
 {
@@ -17,23 +18,41 @@ int main(int argc, char const *argv[])
 	Color green = init_color(0, 255, 0);
 	Color black = init_color(0, 0, 0);
 
-	Circle circle1 = init_circle(100, 100, 100, red);
-	Circle circle2 = init_circle(100, 250, 100, blue);
-	Color mixed_color = mix_color(circle1.color, circle2.color);
+	const float CIRCLE_RADIUS = 100;
+	const uint32_t SECTION_SIZE = CANVAS_HEIGHT / SECTIONS;
+	const uint32_t PADDING = (SECTION_SIZE - CIRCLE_RADIUS * 2) / 2;
 
-	Intersect intersect = init_intersect(circle1, circle2, mixed_color);
+	Circle circle1 = init_circle(CIRCLE_RADIUS, 100, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 0), red);
+	Circle circle2 = init_circle(CIRCLE_RADIUS, 250, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 0), blue);
+	Color mixed_color1 = mix_color(circle1.color, circle2.color);
+	Intersect intersect1 = init_intersect(circle1, circle2, mixed_color1);
 
-	Circle circle3 = init_circle(100, 100, 320, green);
-	Circle circle4 = init_circle(100, 250, 320, green);
+	Circle circle3 = init_circle(CIRCLE_RADIUS, 100, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 1), green);
+	Circle circle4 = init_circle(CIRCLE_RADIUS, 250, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 1), green);
 
-	Circle circle5 = init_circle(100, 100, 540, black);
+	Circle circle5 = init_circle(CIRCLE_RADIUS, 100, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 2), black);
 
-	// draw_circle(&canvas, circle1, true);
-	// draw_circle(&canvas, circle2, true);
+	Circle circle6 = init_circle(CIRCLE_RADIUS, 425, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 0), red);
+	Circle circle7 = init_circle(CIRCLE_RADIUS, 550, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 0), blue);
+	Intersect intersect2 = init_intersect(circle6, circle7, mixed_color1);
+
+	Circle circle8 = init_circle(CIRCLE_RADIUS, 625, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 0), red);
+	Circle circle9 = init_circle(CIRCLE_RADIUS, 750, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 0), blue);
+	Intersect intersect3 = init_intersect(circle8, circle9, mixed_color1);
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		printf("%f\n", PADDING + CIRCLE_RADIUS + (SECTION_SIZE * i));
+	}
+
+	draw_circle(&canvas, circle1, true);
+	draw_circle(&canvas, circle2, true);
 	draw_circle(&canvas, circle3, true);
 	draw_circle(&canvas, circle4, true);
 	draw_circle(&canvas, circle5, false);
-	draw_intersect(&canvas, intersect, false);
+	draw_intersect(&canvas, intersect1, true);
+	draw_intersect(&canvas, intersect2, true);
+	draw_intersect(&canvas, intersect3, false);
 
 	export_canvas(&canvas);
 

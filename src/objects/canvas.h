@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define BORDER 1 // That is border thickness.
+
 typedef struct __Canvas
 {
     uint32_t x;
@@ -56,7 +58,7 @@ void draw_circle(Canvas *canvas, Circle circle, bool fill)
             {
                 canvas->surface[i][j] = circle.color;
             }
-            else if (!fill && fabs(distance - radius) <= 1 && is_inside(canvas, i, j))
+            else if (!fill && fabs(distance - radius) <= BORDER && is_inside(canvas, i, j))
             {
                 canvas->surface[i][j] = circle.color;
             }
@@ -154,7 +156,7 @@ void draw_intersect(Canvas *canvas, Intersect intersect, bool fill)
             {
                 canvas->surface[i][j] = intersect.color;
             }
-            else if (!fill && ((distance1 <= circle1.radius && fabs(distance2 - circle2.radius) <= 1) || (distance2 <= circle2.radius && fabs(distance1 - circle1.radius) <= 1)) && is_inside(canvas, i, j))
+            else if (!fill && ((distance1 <= circle1.radius && fabs(distance2 - circle2.radius) <= BORDER) || (distance2 <= circle2.radius && fabs(distance1 - circle1.radius) <= BORDER)) && is_inside(canvas, i, j))
             {
                 canvas->surface[i][j] = intersect.color;
             }
