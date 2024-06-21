@@ -118,7 +118,7 @@ Canvas init_canvas(char *name, uint32_t x, uint32_t y, Color bg_color)
     return canvas;
 }
 
-void draw_intersect(Canvas *canvas, Intersect intersect)
+void draw_intersect(Canvas *canvas, Intersect intersect, bool fill)
 {
     Circle circle1 = intersect.circle1;
     Circle circle2 = intersect.circle2;
@@ -150,7 +150,11 @@ void draw_intersect(Canvas *canvas, Intersect intersect)
             uint32_t dy2 = abs((int32_t)circle2.y - j);
             float distance2 = sqrt(dx2 * dx2 + dy2 * dy2);
 
-            if (distance1 <= circle1.radius && distance2 <= circle2.radius && is_inside(canvas, i, j))
+            if (fill && distance1 <= circle1.radius && distance2 <= circle2.radius && is_inside(canvas, i, j))
+            {
+                canvas->surface[i][j] = intersect.color;
+            }
+            else if (!fill && ((distance1 <= circle1.radius && fabs(distance2 - circle2.radius) <= 1) || (distance2 <= circle2.radius && fabs(distance1 - circle1.radius) <= 1)) && is_inside(canvas, i, j))
             {
                 canvas->surface[i][j] = intersect.color;
             }

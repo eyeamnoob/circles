@@ -28,12 +28,12 @@ int main(int argc, char const *argv[])
 
 	Circle circle5 = init_circle(100, 100, 540, black);
 
-	draw_circle(&canvas, circle1, true);
-	draw_circle(&canvas, circle2, true);
+	// draw_circle(&canvas, circle1, true);
+	// draw_circle(&canvas, circle2, true);
 	draw_circle(&canvas, circle3, true);
 	draw_circle(&canvas, circle4, true);
 	draw_circle(&canvas, circle5, false);
-	draw_intersect(&canvas, intersect);
+	draw_intersect(&canvas, intersect, false);
 
 	export_canvas(&canvas);
 
