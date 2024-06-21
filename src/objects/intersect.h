@@ -1,6 +1,8 @@
 #ifndef __MY_INTERSECT_H
 #define __MY_INTERSECT_H
 
+#include "circle.h"
+
 typedef struct __Intersect
 {
     Circle circle1;
