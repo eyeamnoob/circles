@@ -14,8 +14,9 @@ int main(int argc, char const *argv[])
 
 	Circle circle1 = init_circle(100, 400 - 50, 400, red);
 	Circle circle2 = init_circle(100, 400 + 50, 400, blue);
+	Color mixed_color = mix_color(circle1.color, circle2.color);
 
-	Intersect intersect = init_intersect(circle1, circle2, (Color){125, 125, 125});
+	Intersect intersect = init_intersect(circle1, circle2, mixed_color);
 
 	draw_circle(&canvas, circle1);
 	draw_circle(&canvas, circle2);
