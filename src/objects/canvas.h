@@ -48,8 +48,8 @@ void draw_circle(Canvas *canvas, Circle circle)
     {
         for (int32_t i = x_boundary_min; i <= x_boundary_max; ++i)
         {
-            uint32_t dx = abs(x - i);
-            uint32_t dy = abs(y - j);
+            uint32_t dx = abs((int32_t)x - i);
+            uint32_t dy = abs((int32_t)y - j);
 
             float distance = sqrt(dx * dx + dy * dy);
 
@@ -139,12 +139,12 @@ void draw_intersect(Canvas *canvas, Intersect intersect)
     {
         for (int32_t i = intersect_rect_top_left_x; i <= intersect_rect_bottom_right_x; ++i)
         {
-            uint32_t dx1 = abs(circle1.x - i);
-            uint32_t dy1 = abs(circle1.y - j);
+            uint32_t dx1 = abs((int32_t)circle1.x - i);
+            uint32_t dy1 = abs((int32_t)circle1.y - j);
             float distance1 = sqrt(dx1 * dx1 + dy1 * dy1);
 
-            uint32_t dx2 = abs(circle2.x - i);
-            uint32_t dy2 = abs(circle2.y - j);
+            uint32_t dx2 = abs((int32_t)circle2.x - i);
+            uint32_t dy2 = abs((int32_t)circle2.y - j);
             float distance2 = sqrt(dx2 * dx2 + dy2 * dy2);
 
             if (distance1 <= circle1.radius && distance2 <= circle2.radius && is_inside(canvas, i, j))
