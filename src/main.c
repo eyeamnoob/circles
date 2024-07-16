@@ -17,6 +17,7 @@ int main(int argc, char const *argv[])
 	Color blue = init_color(0, 0, 255);
 	Color green = init_color(0, 255, 0);
 	Color black = init_color(0, 0, 0);
+	Color white = init_color(255, 255, 255);
 
 	const float CIRCLE_RADIUS = 100;
 	const uint32_t SECTION_SIZE = CANVAS_HEIGHT / SECTIONS;
@@ -40,14 +41,21 @@ int main(int argc, char const *argv[])
 	Circle circle9 = init_circle(CIRCLE_RADIUS, 750, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 0), blue);
 	Intersect intersect3 = init_intersect(circle8, circle9, mixed_color1);
 
+	Circle circle10 = init_circle(CIRCLE_RADIUS, 525, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 1), green);
+	Circle circle11 = init_circle(CIRCLE_RADIUS, 650, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 1), green);
+	Intersect intersect4 = init_intersect(circle10, circle11, white);
+
 	draw_circle(&canvas, circle1, true);
 	draw_circle(&canvas, circle2, true);
 	draw_circle(&canvas, circle3, true);
 	draw_circle(&canvas, circle4, true);
 	draw_circle(&canvas, circle5, false);
+	draw_circle(&canvas, circle10, false);
+	draw_circle(&canvas, circle11, false);
 	draw_intersect(&canvas, intersect1, true);
 	draw_intersect(&canvas, intersect2, true);
 	draw_intersect(&canvas, intersect3, false);
+	draw_intersect(&canvas, intersect4, false);
 
 	export_canvas(&canvas);
 
