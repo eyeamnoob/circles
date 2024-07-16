@@ -40,11 +40,6 @@ int main(int argc, char const *argv[])
 	Circle circle9 = init_circle(CIRCLE_RADIUS, 750, PADDING + CIRCLE_RADIUS + (SECTION_SIZE * 0), blue);
 	Intersect intersect3 = init_intersect(circle8, circle9, mixed_color1);
 
-	for (size_t i = 0; i < 3; i++)
-	{
-		printf("%f\n", PADDING + CIRCLE_RADIUS + (SECTION_SIZE * i));
-	}
-
 	draw_circle(&canvas, circle1, true);
 	draw_circle(&canvas, circle2, true);
 	draw_circle(&canvas, circle3, true);
